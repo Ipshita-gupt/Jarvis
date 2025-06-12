@@ -11,7 +11,7 @@ import os
 
 recognizer = sr.Recognizer()
 engine = pyttsx3.init() 
-newsapi = "ac9879df065c4b66aa9406c7c87a321b"
+newsapi = "YOUR_KEY HERE"
 
 
 def speak(text):
@@ -50,7 +50,7 @@ def processCommand(c):
         webbrowser.open(link)
 
     elif "news" in c.lower():
-        r = requests.get(f"https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey={"ac9879df065c4b66aa9406c7c87a321b"}")
+        r = requests.get(f"https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey={"YOUR_KEY HERE"}")
 
         if r.status_code == 200:
             # Parse the JSON response
