@@ -7,27 +7,19 @@ from gtts import gTTS
 import pygame
 import os
 
-# pip install pocketsphinx
-
 recognizer = sr.Recognizer()
 engine = pyttsx3.init() 
 newsapi = "YOUR_KEY HERE"
-
 
 def speak(text):
     tts = gTTS(text)
     tts.save('temp.mp3') 
 
-    # Initialize Pygame mixer
     pygame.mixer.init()
-
-    # Load the MP3 file
     pygame.mixer.music.load('temp.mp3')
 
-    # Play the MP3 file
     pygame.mixer.music.play()
-
-    # Keep the program running until the music stops playing
+    
     while pygame.mixer.music.get_busy():
         pygame.time.Clock().tick(10)
     
@@ -53,13 +45,10 @@ def processCommand(c):
         r = requests.get(f"https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey={"YOUR_KEY HERE"}")
 
         if r.status_code == 200:
-            # Parse the JSON response
             data = r.json()
             
-            # Extract the articles
             articles = data.get('articles', [])
             
-            # Print the headlines
             for article in articles:
                 speak(article['title'])
 
